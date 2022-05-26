@@ -66,6 +66,10 @@ ansible-playbook -i myhosts -K playbook1.yml
 ```bash
 cd /vagrant/docker/python
 docker-compose up --build
+```
+#### Testing (from control/node1/2/3)
+
+```bash
 curl node1:5000
 ```
 
