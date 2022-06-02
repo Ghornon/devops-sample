@@ -46,41 +46,64 @@ ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3
 ```
 
 ### Test Ansible
+
 ```bash
-ansible nodes -i myhosts -m command -a hostname
+ansible nodes -i inventory -m command -a hostname
 ```
 
 ### Examle commnad (install python)
+
 ```bash
-ansible nodes -i myhosts -m command -a 'sudo apt-get -y install python-simplejson'
+ansible nodes -i inventory -m command -a 'sudo apt-get -y install python-simplejson'
 ```
 
 ### Run the ansible playbook to install docker
+
 ```bash
-ansible-playbook -i myhosts -K playbook1.yml
+ansible-playbook -i inventory -K playbook1.yml
 ```
 
 ## Docker
 
-### Python app (on node1/2/3)
+### Docker apps (on node1/2/3)
+
 ```bash
 cd /vagrant/docker/python
 docker-compose up --build
 ```
-#### Testing (from control/node1/2/3)
 
-```bash
-curl node1:5000
-```
-
-### Node.js app (on node1/2/3)
 ```bash
 cd /vagrant/docker/node
 docker-compose up --build
 ```
 
-#### Testing (from control/node1/2/3)
+Testing (from control/node1/2/3)
 
 ```bash
+curl node1:5000
 curl node1:8080
+```
+
+### Docker swarm
+
+Create and join swarm
+
+```bash
+docker swarm init
+```
+
+```bash
+docker swarm join --token <token>
+```
+
+#### Create service
+
+```bash
+docker service create <image>
+docker service create --name nodeapp --publish 8080:8080 ghornon/nodejs-test-app
+```
+
+```bash
+docker service sale <name>=<count>
+docker service sale nodeapp=3
 ```
