@@ -8,3 +8,7 @@ node3
 
 [swarm-manager]
 node1
+
+[swarm-workers]
+node2
+node3
