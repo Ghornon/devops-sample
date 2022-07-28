@@ -5,3 +5,6 @@ control
 node1
 node2
 node3
+
+[swarm-manager]
+node1

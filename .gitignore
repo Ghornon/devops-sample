@@ -117,3 +117,6 @@ dist
 
 # Editor settings
 .vscode
+
+# Vagrant
+.vagrant
